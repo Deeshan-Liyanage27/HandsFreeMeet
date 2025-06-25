@@ -8,6 +8,10 @@ if ($webcam) {
     Set-AudioDevice -PlaybackMute $false
     Set-AudioDevice -RecordingMute $false
 
+    Write-Host "Starting Google Meet"
+    Start-Process "https://meet.google.com/"
+    
+    python .\move.py
 } else {
     Write-Host "No webcam found."
 }
