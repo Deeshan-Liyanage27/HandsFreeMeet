@@ -8,8 +8,8 @@ if ($webcam) {
     Set-AudioDevice -PlaybackMute $false
     Set-AudioDevice -RecordingMute $false
 
-    Write-Host "Starting Google Meet"
-    Start-Process "https://meet.google.com/"
+    Write-Host "Starting Messenger"
+    Start-Process "https://www.messenger.com/"
     
     python .\move.py
 } else {

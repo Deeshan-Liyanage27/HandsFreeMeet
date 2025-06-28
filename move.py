@@ -1,25 +1,29 @@
 import pyautogui
 import time
 
-time.sleep(10)
-pyautogui.click('New meeting button.png')
+time.sleep(5)
+try:
+    pyautogui.click('Select_Chat.png')
+except pyautogui.ImageNotFoundException:
+    print("Chat is already selected")
 
-time.sleep(2)
-pyautogui.click('start meeting button.png')
+time.sleep(5)
+x, y = pyautogui.locateCenterOnScreen('Vid_Call.png',confidence=0.8)
+pyautogui.click(x,y)
 
 time.sleep(3)
+x, y = pyautogui.locateCenterOnScreen('CallButton.png',confidence=0.8)
+pyautogui.click(x,y)
+
 try:
-    pyautogui.click('mute.png')
+    pyautogui.click('Mute.png')
 except pyautogui.ImageNotFoundException:
     print("Not muted")
 
 try:
-    pyautogui.click('vid.png')
+    pyautogui.click('Vid.png')
 except pyautogui.ImageNotFoundException:
     print("Video is on")
 
-
-time.sleep(10)
-pyautogui.click('Add button.png')
 
 
