@@ -8,10 +8,20 @@ if ($webcam) {
     Set-AudioDevice -PlaybackMute $false
     Set-AudioDevice -RecordingMute $false
 
+    netsh wlan set autoconnect enabled=yes name="RNDS"
+    netsh wlan connect name="RNDS"
+    $wifi = netsh wlan show interfaces | Select-String -Pattern "State" | ForEach-Object { $_.ToString().Split(':')[1].Trim() }
+    while ($wifi -ne "connected") {
+        Write-Host "Connecting to Wi-Fi..."
+        netsh wlan connect name="RNDS"
+        Start-Sleep -Seconds 10
+        $wifi = netsh wlan show interfaces | Select-String -Pattern "State" | ForEach-Object { $_.ToString().Split(':')[1].Trim() }
+    }       
+
     Write-Host "Starting Messenger"
     Start-Process "https://www.messenger.com/"
     
-    python .\move.py
+    python .\CallManager.py
     Write-Host "Automation complete."
 
     # Stop-Computer -Force # To shut down the computer after the call
@@ -19,3 +29,4 @@ if ($webcam) {
 } else {
     Write-Host "No webcam found."
 }
+
