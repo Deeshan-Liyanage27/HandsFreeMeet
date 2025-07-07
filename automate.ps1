@@ -1,3 +1,5 @@
+pip.exe install -r requirements.txt 
+
 $webcam = Get-PnpDevice -PresentOnly | Where-Object { $_.FriendlyName -match '^USB2.0_Camera'}
 
 if ($webcam) {
