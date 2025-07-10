@@ -4,7 +4,7 @@ Start-Sleep -Seconds 30
 $webcam = Get-PnpDevice -PresentOnly | Where-Object { $_.FriendlyName -match '^USB2.0_Camera'}
 
 if ($webcam) {
-    Write-Host "Webcam found: $($webcam.FriendlyName)"
+    Write-Host "External Microphone found: $($webcam.FriendlyName)"
 
     Write-Host "Setting up audio devices"
     # CHANGE ID FOR YOUR AUDIO DEVICE BY CHECKING IT THROUGH "Get-AudioDevice -List"
@@ -34,6 +34,6 @@ if ($webcam) {
     Stop-Computer -Force # To shut down the computer after the call
 
 } else {
-    Write-Host "No webcam found."
+    Write-Host "No External Microphone found."
 }
 
