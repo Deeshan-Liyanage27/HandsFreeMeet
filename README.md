@@ -1,8 +1,8 @@
 # HandsFreeMeet
 
-**HandsFreeMeet** is an automation tool that launches Facebook Messenger in the default browser and automatically handles group video calls — no user interaction required.
+**HandsFreeMeet** is an automation tool that launches Facebook Messenger in the default browser and automatically handles group video calls with no user interaction required.
 
-This program is built for older generation who doesn't know how to operate a computer.  It starts automatically (only if autorun is configured) when the computer boots up and runs only if the specific external microphone is connected.  
+This program is built for older generation who doesn't know how to operate a computer.  It starts automatically when the computer boots up and runs only if the specific external microphone is connected, ensuring it's used only when intended.  
 
 ## Features
 
