@@ -5,24 +5,26 @@ fail = False
 incomingCall = False
 end = False
 
-time.sleep(15) # Wait for the browser to load
-# Select the group
-try:
-    pyautogui.click('Select_Chat.png')
-except pyautogui.ImageNotFoundException:
-    print("Chat is already selected")
+time.sleep(20) #Wait for the browser to load
 
-# Get the call
+#Select the chat
+try:
+    x, y = pyautogui.locateCenterOnScreen('Select_Chat.png',confidence=0.8)
+    pyautogui.click(x,y)
+except pyautogui.ImageNotFoundException:
+   print("Chat is already selected")
+
+#Get the call
 time.sleep(5)
 x, y = pyautogui.locateCenterOnScreen('Vid_Call.png',confidence=0.8)
 pyautogui.click(x,y)
 
 time.sleep(5)
-x, y = pyautogui.locateCenterOnScreen('CallButton.png',confidence=0.8)
+x, y = pyautogui.locateCenterOnScreen('CallButton.png',confidence=0.9)
 pyautogui.click(x,y)
 
 
-time.sleep(180) # wait till call fail
+time.sleep(180) # Wait till call fail
 try:
     pyautogui.locateOnScreen('Call_Failure.png', confidence=0.8)
     fail = True
@@ -57,31 +59,24 @@ if fail:
         except pyautogui.ImageNotFoundException:
             incomingCall = False
 
-# Check if Video and mic is on
-try:
-    pyautogui.click('Mute.png')
-    print("Unmuted successfully")
-except pyautogui.ImageNotFoundException:
-    print("Not muted")
-
-try:
-    pyautogui.click('Vid.png')
-    print("Video is turned on")
-except pyautogui.ImageNotFoundException:
-    print("Video is on")
+time.sleep(15)
 
 # Go to full screen mode
 height, width = pyautogui.size() # Find the resolution of the screen
-time.sleep(15)
 pyautogui.moveTo(height/2, width/2, duration=1)
-pyautogui.click('Menu.png', duration=1)
+
+x, y = pyautogui.locateCenterOnScreen('Menu.png',confidence=0.55)
+pyautogui.click(x,y, duration=1)
+
 time.sleep(1)
-pyautogui.click('FullScreen.png', duration=1)
+
+x, y = pyautogui.locateCenterOnScreen('FullScreen.png',confidence=0.8)
+pyautogui.click(x,y, duration=1)
 
 
 # Wait for the call to end
 try:
-    pyautogui.locateOnScreen('Call_Ended.png', confidence=0.8)
+    pyautogui.locateOnScreen('Call_Ended.png', confidence=0.55)
     print("Call ended")
     end = True
 except pyautogui.ImageNotFoundException:
@@ -97,12 +92,10 @@ while end == False:
         end = False
 
 # Leave the call
+pyautogui.moveTo(height/2, width/2, duration=1)
 endCall = pyautogui.locateCenterOnScreen('End.png', confidence=0.8) 
 pyautogui.click(endCall)
 
 time.sleep(5) 
-closeButton = pyautogui.locateCenterOnScreen('Close_button.png', confidence=0.8) 
+closeButton = pyautogui.locateCenterOnScreen('close.png', confidence=0.55) 
 pyautogui.click(closeButton)
-
-time.sleep(60) 
-
