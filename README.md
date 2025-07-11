@@ -35,7 +35,9 @@ Install-Module -Name AudioDeviceCmdlets
 ```
 
 ## How to run?
-
+Open PowerShell and run **Get-AudioDevice -List**
+Get the name and ID of the external device.
+Replace them with the current.
 Right click on the .ps1 file and select **Run with PowerShell**.
 
 ## Autorun (Optional)
